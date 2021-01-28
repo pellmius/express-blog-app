@@ -4,9 +4,9 @@ import icon404 from './404.png';
 import { useLocation } from 'react-router-dom';
 const Http404 = () => {
     const location = useLocation();
-    // useEffect(() =>{
-    //     document.body.style.overflow = 'hidden';
-    // })
+    useEffect(() =>{
+        document.body.style.overflow = 'hidden';
+    })
     return(
         <>
             <div id='container-404'>
@@ -16,7 +16,6 @@ const Http404 = () => {
             </div>
 
             <div id='footer-404'>
-                aaaaa
                 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> 
             </div>
         </>
