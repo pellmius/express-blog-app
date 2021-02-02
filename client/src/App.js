@@ -5,7 +5,7 @@ import Sidebar from './components/Sidebar/Sidebar.js';
 import Http404 from './components/404/404.js';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {SidebarProvider} from './contexts/SidebarContext';
-import {Login} from './components/Login';
+import Login from './components/Login/Login.js';
 
 function App() {
   return (
