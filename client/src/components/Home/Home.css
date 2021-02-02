@@ -1,3 +1,44 @@
 html, body {
     overflow-x: hidden;
+    font-family: 'Work Sans';
+}
+
+.home {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.posts-container {
+    margin-left: 5vw;
+    margin-bottom: 81.5vh;
+    width: 65vw;
+    padding: 10px;
+    background-color: #ebebeb;
+}
+
+.posts-title {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.ads-container {
+    background: #ff4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: 5vw;
+    width: 20vw;
+    height: 90vh;
+}
+.ad {
+    width: 70%;
+    height: 30%;
+    text-align: center;
+    background: rgb(157, 255, 153);
+    margin-top: 20px;
 }
