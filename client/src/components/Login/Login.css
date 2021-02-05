@@ -7,7 +7,8 @@
 
 .child-login {
     position: absolute;
-    background: #ebebeb;
+    background: white;
+    border: 1.5px solid black;
     width: 300px;
     height: 400px;
     top: 21vh;
@@ -62,4 +63,38 @@
     background: black;
     color: white;
     transition: 0.25s cubic-bezier(0.68, 0.55, 0.265, 1.55);
+}
+
+.svg-container {
+    position: absolute;
+}
+#svg-1 {
+    position: absolute;
+    width: 100px;
+    left: 50px;
+    top: 50px;
+}
+#svg-2 {
+    position: absolute;
+    width: 100px;
+    left: 100px;
+    top: 350px;
+}
+#svg-3 {
+    position: absolute;
+    width: 100px;
+    left: 850px;
+    top: 300px;
+}
+#svg-4 {
+    position: absolute;
+    width: 100px;
+    left: 250px;
+    top: 200px;
+}
+#svg-5 {
+    position: absolute;
+    width: 100px;
+    left: 950px;
+    top: 200px;
 }

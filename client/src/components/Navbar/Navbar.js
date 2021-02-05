@@ -1,37 +1,40 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { FaBars } from "react-icons/fa";
+import NavLoginCheck from './NavLoginCheck';
 import axios from 'axios';
-import {SidebarContext} from '../../contexts/SidebarContext'
+import {SidebarContext} from '../../contexts/SidebarContext';
+import {NavbarContext} from '../../contexts/NavbarContext';
 import './Navbar.css';
 const Navbar = () => {
     
     const [sidebarVisible,toggleSidebar] = useContext(SidebarContext);
+    const [userObj,setUserObj] = useContext(NavbarContext);
+    const token = window.localStorage.token;
 
-    // useEffect(() => {
-    //     axios.post('http://localhost:8000/api/users/profile', {
-    //         headers: {'Authorization': 'Bearer a'}
-    //     })
-    //     .then((response) => {
-    //       console.log(response.data)
-    //     })
-    //   })
+    useEffect(() => {
+        if(token !== '') {
+            console.log(token)
+            axios.post('http://localhost:8000/api/users/profile', {}, {headers: {'Authorization': 'Bearer ' + token}})
+            .then((response) => {
+                console.log(response.data)
+                setUserObj(response.data);
+            }) 
+        } else {
+            setUserObj(null)
+        }
+    })
+
     return(
     <div id='navbar'>
         <div id='navbar-left'>
             <button onClick={() => toggleSidebar(!sidebarVisible)} className='bar-button'><FaBars size='2em' className='bar' style={{color:'white'}}/></button>
-            <a href='##' id='logo'>Blogocum</a>
+            <a href='/' id='logo'>Blogocum</a>
             <form>
                <input placeholder='Search' type='text'></input> 
             </form>
             
         </div>
-        
-        <div id='navbar-container'>
-            
-            <a href='##'>Login</a>
-            <a href='##'>Signup</a>
-            <a href='##'>Settings</a>
-        </div>
+        <NavLoginCheck/>
     </div>        
     )
 }

@@ -10,7 +10,7 @@ const checkUserValidityWhenRegistering = (username,password,res) => {
         res.json({msg:'Username too long'})
         return false;
     }
-    if(password.length < 8) {
+    else if(password.length < 8) {
         res.json({msg:'Password too short. Must have at least 8 characters'});
         return false;
     }
@@ -40,12 +40,15 @@ router.post('/profile', passport.authenticate('jwt', { session: false }),
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({username: req.body.username}).exec();
-        console.log(process.env.JWT_SECRET)
         if(!user) res.json({msg:"No user found"})
-        if(!await bcrypt.compare(req.body.password, user.password)) res.json({msg:"Password mismatch"})
-        const token = jwt.sign({username:user.username, pasword: user.password}, process.env.JWT_SECRET)
-        console.log(token)
-        res.json({token})
+        else if( user && !await bcrypt.compare(req.body.password, user.password)) res.json({msg:"Password mismatch"})
+        else if(user && await bcrypt.compare(req.body.password, user.password)){
+            console.log(user)
+           const token = jwt.sign({username:user.username, pasword: user.password, followers:user.followers}, process.env.JWT_SECRET)
+            console.log(jwt.verify(token, process.env.JWT_SECRET))
+            res.json({token:token}) 
+        }
+        
     }
     catch {
         res.send("Error...")
