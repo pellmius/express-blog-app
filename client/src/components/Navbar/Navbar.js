@@ -22,7 +22,7 @@ const Navbar = () => {
         } else {
             setUserObj(null)
         }
-    })
+    }, [])
 
     return(
     <div id='navbar'>

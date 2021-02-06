@@ -1,10 +1,8 @@
-import React, {useEffect, useContext} from 'react';
-import { LoginContext } from '../../contexts/LoginContext'
+import React, {useEffect} from 'react';
 import {Redirect} from 'react-router-dom';
 
 
 const Logout = props => {
-    const [token,setToken] = useContext(LoginContext)
     useEffect(() => {
         window.localStorage.setItem('token','');
     })

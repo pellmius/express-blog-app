@@ -24,6 +24,11 @@ router.get('/', async (req, res) =>{
     res.send(users);
 })
 
+router.get('/:username', async (req, res) => {
+    let user = await User.find({username:req.params.username}).exec();
+    user.length > 0 ? res.json({user, success:true}) : res.json({msg:'User not found', success:false});
+})
+
 router.post('/profile', passport.authenticate('jwt', { session: false }),
     function(req, res) {
         const authHeader = req.headers['authorization'];
