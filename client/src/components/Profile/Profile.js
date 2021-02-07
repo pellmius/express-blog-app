@@ -24,15 +24,23 @@ const Profile = () => {
             
         })
     }, [])
+    if(username) {
+        return (
+            <div className='profile-container'>
+                <h2 id='profile-username'>{username}</h2>
+                <p id='profile-followers'> Followers: {followers}</p>
+                <p id='profile-date-joined'>Joined: {dateJoined}</p>
+            </div>
+        )  
+    } else {
+        return (
+            <div className='profile-container'>
+                {msg}    
+            </div>
+            
+        )
+    }
     
-    return (
-        <div className='profile-container'>
-            <h2 id='profile-username'>{username}</h2>
-            <p id='profile-followers'> Followers: {followers}</p>
-            <p id='profile-date-joined'>Joined: {dateJoined}</p>
-            {msg}
-        </div>
-    )
 }
 
 export default Profile; 

@@ -32,10 +32,12 @@ passport.use(new JWTStrategy(opts, (jwt_payload, done) => {
 
 mongoose.connect(process.env.DB_STRING, {useNewUrlParser: true, useUnifiedTopology: true});
 const usersComponent = require('./components/users/index');
+const postsComponent = require('./components/posts/index');
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
 app.use('/api/users', usersComponent.usersAPI);
+app.use('/api/posts', postsComponent.postsAPI);
 
 
 
