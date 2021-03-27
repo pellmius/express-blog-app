@@ -30,18 +30,7 @@ router.get('/pinned', async (req,res) => {
     }
 })
 
-router.get('/createtest', async (req, res) => {
-    const newPost = Post.create({
-        title: 'new postaaaa',
-        content: 'thaaais iaas the anewestaaa post',
-        author: 'kekiusas',
-        date_posted: dayjs().subtract(10,'day'),
-        upvotes: 0,
-        downvotes: 0,
-        comments: ['kek retard'],
-        tags: ['nigga'],
-    })
-})
+
 
 router.get('/recent', async (req,res) => {
     const posts = await Post.find( {date_posted: {$gt: dayjs().subtract(7,'day')} }).sort('-date_posted').exec(); // finds all posts between 7 days ago and now.
