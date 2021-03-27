@@ -1,51 +1,52 @@
-import React, {useEffect} from 'react';
-import {FaPlusSquare, FaMinusSquare} from 'react-icons/fa';
-import './Home.css';
+import React, {useEffect, useState} from 'react';
+import Post from './Post';
 import axios from 'axios';
+import './Home.css';
+
+
+
 const Home = () => {
+  let [recentPosts,setRecentPosts] = useState([]);
+  let [pinnedPosts,setPinnedPosts] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8000/api/posts/recent')
+    .then(response => {
+      let postsList = response.data;
+      setRecentPosts(postsList);
 
-    const togglePostView = e => {
-      let contentToToggle = e.target.parentNode.parentNode.querySelector('.post-content') || e.target.parentNode.parentNode.parentNode.querySelector('.post-content');
-      let buttonToToggle = e.target;
-      console.log(e.target)
-      if(contentToToggle != null) {
-        if(contentToToggle.style.display == 'none') {
-          contentToToggle.style.display = 'block';
-        } else {
-          contentToToggle.style.display = 'none';
-        }  
-      } 
-      
-    }
+    });
 
-    return(
-      <div className='home'>
-        <div className='posts-container'>
-          <h2 className='posts-title'>Relevant Posts</h2>
-          <div className='post'>
+    axios.get('http://localhost:8000/api/posts/pinned')
+    .then(response => {
+      let postsList = response.data;
+      setPinnedPosts(postsList);
+    })
 
-          </div>
-          <div className='post'>
-            <div className='post-title-container'>
-              <h3 className='post-title'>My first Test</h3>
-              <FaPlusSquare className='btn-toggle' onClick={togglePostView}/>
-              
-            </div>
-            
-            <p className='post-content'>This is my first test post for CSS. </p>
-          </div>
-          <div className='post'></div>
-          <div className='post'></div>
+  }, [])
 
-        </div>
+  return(
+    <div className='home'>
+      <div className='posts-container' id='recent-posts-container'>
+        <h2 className='posts-title'>Frontpage Posts</h2>
+        {pinnedPosts.map(post => {
+          return <Post key = {post._id} id = {post._id} title={post.title} content={post.content.slice(' ', 120)} author = {post.author} date_posted={post.date_posted}/>;
+        })}
+      </div>
+
+      <div className='posts-container' id='recent-posts-container'>
+        <h2 className='posts-title'>Recent Posts</h2>
+        {recentPosts.map(post => {
+          return <Post key = {post._id} id = {post._id} title={post.title} content={post.content.split(' ', 3)} author = {post.author} date_posted={post.date_posted}/>;
+        })}
+      </div>
         
-        <div className='ads-container'>
-          <div className='ad'></div>
-          <div className='ad'></div>
-        </div>
+      <div className='ads-container'>
+        <div className='ad'></div>
+        <div className='ad'></div>
+      </div>
 
-      </div>  
-    )
+    </div>  
+  )
     
 }
 

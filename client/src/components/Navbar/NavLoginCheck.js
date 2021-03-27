@@ -7,7 +7,7 @@ const NavLoginCheck = (props) => {
         return(
             <div id='navbar-container'>
                 <a href='login'>Login</a>
-                <a href='##'>Signup</a>
+                <a href='signup'>Signup</a>
                 <a href='##'>Settings</a>
             </div>
         )

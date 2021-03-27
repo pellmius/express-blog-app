@@ -3,7 +3,9 @@ const router = express.Router();
 const User = require('./usersModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const axios = require('axios');
 var passport = require('passport');
+const SECRET_CAPTCHA_KEY = process.env.SECRET_CAPTCHA_KEY;
 
 const checkUserValidityWhenRegistering = (username,password,res) => {
     if(username.length >= 24) {
@@ -73,11 +75,23 @@ router.post('/create', (req, res) =>{
                 password: hashedPassword,
                 date_joined: Date.now(),
                 followers: 0,})
+            console.log("cringe bro")
             res.json({msg:"User created successfully"});
         }
     })
     
 })
 
+router.post('/create/verify', (req,res) => {
+    let userIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+    let VERIFY_URL = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_CAPTCHA_KEY}&response=${req.body['g-recaptcha-response']}&remoteip=${userIP}`;
+    console.log(VERIFY_URL)
+    return axios.post(VERIFY_URL)
+    .then(response => {
+        return response.data;
+    })
+    .then(json => res.send(json));
+})
 
 module.exports = router;

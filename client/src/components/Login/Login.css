@@ -30,6 +30,7 @@
 
 .child-login form .user-input {
     margin: auto;
+    margin-top: 10px;
     width: 200px;
     padding: 10px;
     border: 1px solid #413d3d;
@@ -68,33 +69,9 @@
 .svg-container {
     position: absolute;
 }
-#svg-1 {
-    position: absolute;
-    width: 100px;
-    left: 50px;
-    top: 50px;
-}
-#svg-2 {
-    position: absolute;
-    width: 100px;
-    left: 100px;
-    top: 350px;
-}
-#svg-3 {
-    position: absolute;
-    width: 100px;
-    left: 850px;
-    top: 300px;
-}
-#svg-4 {
-    position: absolute;
-    width: 100px;
-    left: 250px;
-    top: 200px;
-}
-#svg-5 {
-    position: absolute;
-    width: 100px;
-    left: 950px;
-    top: 200px;
+
+.err-message {
+    color: #f00;
+    margin: auto;
+    margin-top: 10px;
 }

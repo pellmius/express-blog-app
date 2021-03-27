@@ -48,3 +48,12 @@ html, body {
 .btn-toggle:hover {
     cursor: pointer;
 }
+
+.post-author {
+    flex-grow: 1;
+    margin-left: 25px;
+}
+
+.post-date {
+    flex-grow: 0.1;
+}
